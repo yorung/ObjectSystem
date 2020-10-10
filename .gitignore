@@ -1,0 +1,15 @@
+Release/
+Debug/
+ipch/
+bin/
+*.suo
+*.sdf
+*.opensdf
+*.aps
+*.bak
+*.opendb
+*.user
+*.VC.db
+.project
+.classpath
+.settings
