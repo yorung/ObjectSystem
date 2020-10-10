@@ -1,20 +1,48 @@
 // ObjectSystem.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
+#include "Factory.h"
+
+class AFTexture : public AFObject
+{
+};
+
+class AFMaterial : public AFObject
+{
+};
+
+class AFGraphicDevice : public AFObject
+{
+public:
+	AFTexture* CreateTexture(const char* fileName)
+	{
+		return new AFTexture;
+	}
+};
+
+class AFGraphicDeviceFactory : public AFFactory
+{
+public:
+	virtual bool IsCapable(const char* objectName) override;
+	virtual AFObject* Create(const char* objectName) override;
+};
+
+bool AFGraphicDeviceFactory::IsCapable(const char* objectName)
+{
+	return strstr(objectName, ".gd") != nullptr;
+}
+
+AFObject* AFGraphicDeviceFactory::Create(const char* objectName)
+{
+	return new AFGraphicDevice();
+}
+static AFGraphicDeviceFactory GraphicDeviceFactory;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	AFGraphicDevice* Device = FactoryManager.Create<AFGraphicDevice>("GraphicDevice.gd");
+	AFTexture* Texture = Device->CreateTexture("MyTexture.png");
+
+	delete Texture;
+	delete Device;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
