@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectSystem.cpp" />
   </ItemGroup>
   <ItemGroup>

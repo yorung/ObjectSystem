@@ -42,7 +42,4 @@ int main()
 {
 	AFGraphicDevice* Device = FactoryManager.Create<AFGraphicDevice>("GraphicDevice.gd");
 	AFTexture* Texture = Device->CreateTexture("MyTexture.png");
-
-	delete Texture;
-	delete Device;
 }

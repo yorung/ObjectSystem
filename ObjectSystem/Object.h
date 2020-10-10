@@ -3,5 +3,6 @@
 class AFObject
 {
 public:
+	AFObject();
 	virtual ~AFObject() {}
 };

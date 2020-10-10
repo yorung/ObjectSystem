@@ -19,7 +19,7 @@ public:
 	}
 };
 
-class AFFactory : public AFObject
+class AFFactory
 {
 public:
 	AFFactory();
