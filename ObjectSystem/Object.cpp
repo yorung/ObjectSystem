@@ -6,7 +6,8 @@ constexpr int MaxAFObjects = 10000;
 class AFObjectManager
 {
 public:
-	void AddObject(AFObject* Object);
+	void AddObject(AFObject* Object, int& Index);
+	void EraseObject(AFObject* Object, int Index);
 
 	~AFObjectManager();
 
@@ -17,10 +18,19 @@ private:
 
 AFObjectManager ObjectManager;
 
-void AFObjectManager::AddObject(AFObject* Object)
+void AFObjectManager::AddObject(AFObject* Object, int& Index)
 {
 	assert(NextAFObject < MaxAFObjects);
+	Index = NextAFObject;
 	GAFObject[NextAFObject++] = Object;
+}
+
+void AFObjectManager::EraseObject(AFObject* Object, int Index)
+{
+	assert(Object != nullptr);
+	assert(Index < MaxAFObjects);
+	assert(GAFObject[Index] == Object);
+	GAFObject[Index] = nullptr;
 }
 
 AFObjectManager::~AFObjectManager()
@@ -33,5 +43,10 @@ AFObjectManager::~AFObjectManager()
 
 AFObject::AFObject()
 {
-	ObjectManager.AddObject(this);
+	ObjectManager.AddObject(this, Index);
+}
+
+AFObject::~AFObject()
+{
+	ObjectManager.EraseObject(this, Index);
 }
