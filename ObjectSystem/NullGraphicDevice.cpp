@@ -24,6 +24,7 @@ public:
 	virtual void SetDescriptor(int Index, AFDescriptor* Descriptor) override;
 	virtual void SetVertexBuffer(int Size, void* Buffer, int Stride) override;
 	virtual void SetIndexBuffer(AFBuffer* IndexBuffer) override;
+	virtual void DrawIndexed(AFTopology Topology, int NumVertices, int Start = 0, int InstanceCount = 1) override;
 };
 
 void AFNullCommandList::SetPipeline(AFPipeline* Pipeline)
@@ -46,7 +47,12 @@ void AFNullCommandList::SetIndexBuffer(AFBuffer* IndexBuffer)
 
 }
 
-class AFNullGraphicDevice : public IAFGraphicDevice
+void AFNullCommandList::DrawIndexed(AFTopology Topology, int NumVertices, int Start /*= 0*/, int InstanceCount /*= 1*/)
+{
+
+}
+
+class AFNullGraphicDevice : public AFGraphicDevice
 {
 public:
 	virtual AFTexture* CreateTexture(const char* FileName) override

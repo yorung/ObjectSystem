@@ -11,7 +11,7 @@ struct Vector
 
 int main()
 {
-	IAFGraphicDevice* Device = FactoryManager.Create<IAFGraphicDevice>("GraphicDevice.gd");
+	AFGraphicDevice* Device = FactoryManager.Create<AFGraphicDevice>("GraphicDevice.gd");
 	AFPipeline* Pipeline = Device->CreatePipeline("MyPipeline.pipeline");
 	AFDescriptor* Descriptor = Device->CreateDescriptor("MyDescriptor.descriptor");
 	AFCommandList* CommandList = Device->CreateCommandList();
@@ -32,4 +32,5 @@ int main()
 
 	CommandList->SetVertexBuffer(Size, &Vertices[0], sizeof(Vector));
 	CommandList->SetIndexBuffer(IndexBuffer);
+	CommandList->DrawIndexed(AFTopology::TriangleList, 4, 0, 1);
 }

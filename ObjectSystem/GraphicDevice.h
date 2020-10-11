@@ -1,5 +1,13 @@
 #pragma once
 #include "Object.h"
+#include <cstdint>
+
+enum class AFTopology : uint8_t
+{
+	TriangleStrip,
+	TriangleList,
+	LineList,
+};
 
 class AFBuffer : public AFObject
 {
@@ -28,9 +36,10 @@ public:
 	virtual void SetPipeline(AFPipeline* Pipeline) = 0;
 	virtual void SetVertexBuffer(int Size, void* Buffer, int Stride) = 0;
 	virtual void SetIndexBuffer(AFBuffer* IndexBuffer) = 0;
+	virtual void DrawIndexed(AFTopology Topology, int NumVertices, int Start = 0, int InstanceCount = 1) = 0;
 };
 
-class IAFGraphicDevice : public AFObject
+class AFGraphicDevice : public AFObject
 {
 public:
 	virtual AFTexture* CreateTexture(const char* FileName) = 0;
