@@ -23,8 +23,8 @@ class AFFactory
 {
 public:
 	AFFactory();
-	virtual bool IsCapable(const char* objectName) = 0;
-	virtual AFObject* Create(const char* objectName) = 0;
+	virtual bool IsCapable(const char* ObjectName) = 0;
+	virtual AFObject* Create(const char* ObjectName) = 0;
 };
 
 extern AFFactoryManager FactoryManager;
